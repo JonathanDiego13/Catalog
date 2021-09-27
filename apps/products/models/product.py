@@ -13,6 +13,13 @@ class Product(CatalogModel):
     sku = models.CharField('circle name', max_length=12)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     brand = models.CharField('circle name', max_length=40)
+    is_public = models.BooleanField(
+        'product',
+        default=True,
+        help_text = (
+            'Help easily distinguish product and perform queries.',
+        )
+    )
 
     def __str__(self):
         return self.name
