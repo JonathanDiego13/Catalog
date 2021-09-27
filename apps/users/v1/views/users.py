@@ -22,7 +22,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
                   mixins.UpdateModelMixin,
                   viewsets.GenericViewSet):
     """ User view set.
-        Handle sign up, login and acount verification.
+        Handle sign up and login
     """
 
     queryset = User.objects.filter(is_active=True)
@@ -30,7 +30,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
     lookup_field = 'username'
 
     def get_permissions(self):
-        if self.action in ['signup', 'login', 'verify']:
+        if self.action in ['signup', 'login']:
             permissions = [AllowAny]
         elif self.action in ['retrieve','update', 'partial_update']:
             permissions = [IsAuthenticated]
@@ -42,6 +42,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
     @action(detail=False, methods=['post'])
     def login(self, request):
         """User sign in."""
+
         serializer = UserLoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user, token = serializer.save()
@@ -54,6 +55,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
     @action(detail=False, methods=['post'])
     def signup(self, request):
         """User sign up."""
+
         serializer = UserSignUpSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()

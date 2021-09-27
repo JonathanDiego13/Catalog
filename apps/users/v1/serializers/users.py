@@ -1,7 +1,6 @@
 """Users serializers."""
 
 # Django
-from django.conf import settings
 from django.contrib.auth import password_validation, authenticate
 from django.core.validators import RegexValidator
 
@@ -29,7 +28,6 @@ class UserModelSerializer(serializers.ModelSerializer):
 
 class UserSignUpSerializer(serializers.Serializer):
     """ User sign up serialiazer.
-
         Handle sign up data validation and user creation.
     """
 
@@ -79,6 +77,7 @@ class UserSignUpSerializer(serializers.Serializer):
 
     def validate(self, data):
         """Verify passwords match."""
+
         password = data['password']
         password_confirmaton = data['password_confirmation']
 
@@ -90,6 +89,7 @@ class UserSignUpSerializer(serializers.Serializer):
 
     def create(self, data):
         """Handle user and profile creation."""
+
         data.pop('password_confirmation')
         user = User.objects.create_user(**data)#is_admin=False
         return user
@@ -108,14 +108,11 @@ class UserLoginSerializer(serializers.Serializer):
 
     def validate(self, data):
         """Check credentials."""
+
         user = authenticate(username=data['email'], password=data['password'])
-
-        #import ipdb
-        #ipdb.set_trace()
-
         if not user:
             raise serializers.ValidationError('Invalid credentials')
-        if not True:#user.is_verified:
+        if not True:
             raise serializers.ValidationError('Account is not active yet :(')
         self.context['user'] = user
         return data
@@ -124,5 +121,4 @@ class UserLoginSerializer(serializers.Serializer):
         """Generate or retrieve new token."""
 
         token, created = Token.objects.get_or_create(user=self.context['user'])
-
         return self.context['user'], token.key
