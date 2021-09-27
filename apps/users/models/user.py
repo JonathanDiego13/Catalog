@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
 
 #Utilities
-from catalog.utils.models import CatalogModel
+from apps.utils.models import CatalogModel
 
 
 class User(CatalogModel, AbstractUser):
