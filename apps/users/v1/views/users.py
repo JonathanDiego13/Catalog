@@ -10,6 +10,9 @@ from rest_framework.permissions import (
 #Model
 from apps.users.models import User
 
+#Permissions
+from apps.users.v1.permissions import IsAdmin
+
 # Serializers
 from apps.users.v1.serializers import (
     UserLoginSerializer,
@@ -20,6 +23,7 @@ from apps.users.v1.serializers import (
 
 class UserViewSet(mixins.RetrieveModelMixin,
                   mixins.UpdateModelMixin,
+                  mixins.DestroyModelMixin,
                   viewsets.GenericViewSet):
     """ User view set.
         Handle sign up and login
@@ -30,10 +34,10 @@ class UserViewSet(mixins.RetrieveModelMixin,
     lookup_field = 'username'
 
     def get_permissions(self):
-        if self.action in ['signup', 'login']:
+        if self.action in ['login']:
             permissions = [AllowAny]
-        elif self.action in ['retrieve','update', 'partial_update']:
-            permissions = [IsAuthenticated]
+        elif self.action in ['signup', 'retrieve','update', 'destroy']:
+            permissions = [IsAuthenticated, IsAdmin]
         else:
             permissions = [IsAuthenticated]
 
