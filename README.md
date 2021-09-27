@@ -48,6 +48,8 @@ Systems allows manage products
 
 **Endpoint: {{host}}/users/v1/signup/**
 
+>**HTTP Verb: POST**
+
 **Header:** 
 > Content-Type:application/json
 > Accept:application/json
@@ -68,20 +70,19 @@ Systems allows manage products
 **Response**
         
         {
-            "user": {
-                "email": "jonathan.mdzmtz@gmail.com",
-                "username": "jmendoza",
-                "first_name": "Jonathan",
-                "last_name": "Mendoza",
-                "phone_number": "5523097299",
-                "is_admin": true
-            },
-        "access_token": "b3de44826c3af4932467bc0077f63127898b203f"
+            "email": "jonathan.mdzmtz@gmail.com",
+            "username": "jmendoza",
+            "first_name": "Jonathan",
+            "last_name": "Mendoza",
+            "phone_number": "5523097299",
+            "is_admin": true
         }
 
 #### Login 
 
 **Endpoint: {{host}}/users/v1/login/**
+
+>**HTTP Verb: POST**
 
 **Header:** 
 > Content-Type:application/json
@@ -97,12 +98,69 @@ Systems allows manage products
 **Response**
         
         {
+            "user": {
+                "email": "jonathan.mdzmtz@gmail.com",
+                "username": "jmendoza",
+                "first_name": "Jonathan",
+                "last_name": "Mendoza",
+                "phone_number": "5523097299",
+                "is_admin": true
+            },
+        "access_token": "cdb93a784426fa5f7fffbaacd4709d5999c80a51"
+        }
+
+#### User detail 
+
+**Endpoint: {{host}}/users/v1/jmendoza/** (username = jmendoza)
+
+>**HTTP Verb: GET**
+
+**Header:** 
+> **Authorization: Token {{access_token}}**
+> Accept:application/json
+
+**Response**
+        
+        {
             "email": "jonathan.mdzmtz@gmail.com",
             "username": "jmendoza",
             "first_name": "Jonathan",
             "last_name": "Mendoza",
             "phone_number": "5523097299",
             "is_admin": true
+        }
+
+#### Update user 
+
+**Endpoint: {{host}}/users/v1/jmendoza/** (username = jmendoza)
+
+>**HTTP Verb: PUT**
+
+**Header:** 
+> **Authorization: Token {{access_token}}**
+> Content-Type:application/json
+> Accept:application/json
+
+**Body**
+
+        {
+            "email":"jonathan.mdz@gmail.com",
+            "username":"dmendoza",
+            "phone_number":"5523097291",
+            "first_name":"Yonathan",
+            "last_name":"Mendez",
+            "is_admin": false
+        }
+
+**Response**
+        
+        {
+            "email": "jonathan.mdz@gmail.com",
+            "username": "dmendoza",
+            "first_name": "Yonathan",
+            "last_name": "Mendez",
+            "phone_number": "5523097291",
+            "is_admin": false
         }
 
 
@@ -144,7 +202,7 @@ Sometimes it is necessary to delete the images
     * **sudo docker rmi $(sudo docker images -q)**
     
 6. Build services
-        * **sudo docker-compose -f docker-compose-local.yml build**
+    * **sudo docker-compose -f docker-compose-local.yml build**
 
 7. Restart the containers using the following command:
     * **sudo docker-compose -f docker-compose-local.yml up**
