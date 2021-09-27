@@ -44,41 +44,9 @@ Systems allows manage products
 
 # How to use the user API
 
-#### Sign up like a user
-
-**Endpoint: {{host}}/users/v1/signup/**
-
->**HTTP Verb: POST**
-
-**Header:** 
-> Content-Type:application/json
-> Accept:application/json
-
-**Body:**
-
-       {
-            "email":"jonathan.mdzmtz@gmail.com",
-            "username":"jmendoza",
-            "phone_number":"5523097299",
-            "password":"zxcvbnm12345",
-            "password_confirmation":"zxcvbnm12345",
-            "first_name":"Jonathan",
-            "last_name":"Mendoza",
-            "is_admin": true
-       }
-
-**Response**
-        
-        {
-            "email": "jonathan.mdzmtz@gmail.com",
-            "username": "jmendoza",
-            "first_name": "Jonathan",
-            "last_name": "Mendoza",
-            "phone_number": "5523097299",
-            "is_admin": true
-        }
-
 #### Login 
+
+Use the super user, previously created in the verify section
 
 **Endpoint: {{host}}/users/v1/login/**
 
@@ -109,9 +77,44 @@ Systems allows manage products
         "access_token": "cdb93a784426fa5f7fffbaacd4709d5999c80a51"
         }
 
+#### Sign up like a user
+
+**Endpoint: {{host}}/users/v1/signup/**
+
+>**HTTP Verb: POST**
+
+**Header:**
+> **Authorization: Token {{access_token}}** 
+> Content-Type:application/json
+> Accept:application/json
+
+**Body:**
+
+       {
+            "email":"jonathan.mdzmtz@gmail.com",
+            "username":"jmendoza",
+            "phone_number":"5523097299",
+            "password":"zxcvbnm12345",
+            "password_confirmation":"zxcvbnm12345",
+            "first_name":"Jonathan",
+            "last_name":"Mendoza",
+            "is_admin": true
+       }
+
+**Response**
+        
+        {
+            "email": "jonathan.mdzmtz@gmail.com",
+            "username": "jmendoza",
+            "first_name": "Jonathan",
+            "last_name": "Mendoza",
+            "phone_number": "5523097299",
+            "is_admin": true
+        }
+
 #### User detail 
 
-**Endpoint: {{host}}/users/v1/jmendoza/** (username = jmendoza)
+**Endpoint: {{host}}/users/v1/jmendoza/** (jmendoza is username and lookup field)
 
 >**HTTP Verb: GET**
 
@@ -132,7 +135,7 @@ Systems allows manage products
 
 #### Update user 
 
-**Endpoint: {{host}}/users/v1/jmendoza/** (username = jmendoza)
+**Endpoint: {{host}}/users/v1/jmendoza/** (jmendoza is username and lookup field)
 
 >**HTTP Verb: PUT**
 
@@ -162,6 +165,15 @@ Systems allows manage products
             "phone_number": "5523097291",
             "is_admin": false
         }
+
+#### Delete user 
+
+**Endpoint: {{host}}/users/v1/jmendoza/** (jmendoza is username and lookup field)
+
+>**HTTP Verb: DELETE**
+
+**Header:** 
+> **Authorization: Token {{access_token}}**
 
 
 ## Notes
