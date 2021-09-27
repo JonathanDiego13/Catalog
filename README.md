@@ -1,4 +1,3 @@
-
 Catalog Admin System
 =============
 
@@ -42,6 +41,69 @@ Systems allows manage products
 
 4. Congratulation, you can now enter the admin!
 
+
+# How to use the user API
+
+#### Sign up like a user
+
+**Endpoint: {{host}}/users/v1/signup/**
+
+**Header:** 
+> Content-Type:application/json
+> Accept:application/json
+
+**Body:**
+
+       {
+            "email":"jonathan.mdzmtz@gmail.com",
+            "username":"jmendoza",
+            "phone_number":"5523097299",
+            "password":"zxcvbnm12345",
+            "password_confirmation":"zxcvbnm12345",
+            "first_name":"Jonathan",
+            "last_name":"Mendoza",
+            "is_admin": true
+       }
+
+**Response**
+        
+        {
+            "user": {
+                "email": "jonathan.mdzmtz@gmail.com",
+                "username": "jmendoza",
+                "first_name": "Jonathan",
+                "last_name": "Mendoza",
+                "phone_number": "5523097299",
+                "is_admin": true
+            },
+        "access_token": "b3de44826c3af4932467bc0077f63127898b203f"
+        }
+
+#### Login 
+
+**Endpoint: {{host}}/users/v1/login/**
+
+**Header:** 
+> Content-Type:application/json
+> Accept:application/json
+
+**Body**
+
+        {
+            "email":"jonathan.mdzmtz@gmail.com",
+            "password":"zxcvbnm12345"
+       }
+
+**Response**
+        
+        {
+            "email": "jonathan.mdzmtz@gmail.com",
+            "username": "jmendoza",
+            "first_name": "Jonathan",
+            "last_name": "Mendoza",
+            "phone_number": "5523097299",
+            "is_admin": true
+        }
 
 
 ## Notes
