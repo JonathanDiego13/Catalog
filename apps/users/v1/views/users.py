@@ -11,7 +11,7 @@ from rest_framework.permissions import (
 from apps.users.models import User
 
 #Permissions
-from apps.users.v1.permissions import IsAdmin
+from apps.permissions.v1 import IsAdmin
 
 # Serializers
 from apps.users.v1.serializers import (

@@ -42,8 +42,10 @@ Systems allows manage products
 4. Congratulation, you can now enter the admin!
 
 
-# How to use the user API
+# How to use API
 
+## USERS
+____
 #### Login 
 
 Use the super user, previously created in the verify section
@@ -53,8 +55,8 @@ Use the super user, previously created in the verify section
 >**HTTP Verb: POST**
 
 **Header:** 
-> Content-Type:application/json
-> Accept:application/json
+> * Content-Type:application/json
+> * Accept:application/json
 
 **Body**
 
@@ -84,9 +86,9 @@ Use the super user, previously created in the verify section
 >**HTTP Verb: POST**
 
 **Header:**
-> **Authorization: Token {{access_token}}** 
-> Content-Type:application/json
-> Accept:application/json
+> * **Authorization: Token {{access_token}}** 
+> * Content-Type:application/json
+> * Accept:application/json
 
 **Body:**
 
@@ -119,8 +121,8 @@ Use the super user, previously created in the verify section
 >**HTTP Verb: GET**
 
 **Header:** 
-> **Authorization: Token {{access_token}}**
-> Accept:application/json
+> * **Authorization: Token {{access_token}}**
+> * Accept:application/json
 
 **Response**
         
@@ -140,9 +142,9 @@ Use the super user, previously created in the verify section
 >**HTTP Verb: PUT**
 
 **Header:** 
-> **Authorization: Token {{access_token}}**
-> Content-Type:application/json
-> Accept:application/json
+> * **Authorization: Token {{access_token}}**
+> * Content-Type:application/json
+> * Accept:application/json
 
 **Body**
 
@@ -173,14 +175,138 @@ Use the super user, previously created in the verify section
 >**HTTP Verb: DELETE**
 
 **Header:** 
-> **Authorization: Token {{access_token}}**
+> * **Authorization: Token {{access_token}}**
+
+
+## PRODUCTS
+____
+#### Create a product 
+
+**Endpoint: {{host}}/products/v1/**
+
+>**HTTP Verb: POST**
+
+**Header:** 
+
+> * **Authorization: Token {{access_token}}**
+> * Content-Type:application/json
+> * Accept:application/json
+
+**Body**
+
+        {
+            "name":"Playera",
+            "sku":"P0001",
+            "price": 100.01,
+            "brand": "Patito",
+            "is_public": true
+        }
+
+**Response**
+        
+        {
+            "name": "Playera",
+            "sku": "P0001",
+            "price": "100.01",
+            "brand": "Patito",
+            "is_public": true
+        }
+
+#### List a products 
+
+**Endpoint: {{host}}/products/v1/**
+
+>**HTTP Verb: GET**
+
+**Header:** 
+
+> * **Authorization: Token {{access_token}}**
+> * Accept:application/json
+
+**Response**
+        
+    {
+        "count": 2,
+        "next": null,
+        "previous": null,
+        "results": [
+            {
+                "name": "Playera",
+                "sku": "P0001",
+                "price": "100.01",
+                "brand": "Patito",
+                "is_public": true
+            },
+            {
+                "name": "Pantalon",
+                "sku": "P0002",
+                "price": "100.01",
+                "brand": "Patito",
+                "is_public": true
+            }
+        ]
+    }
+
+#### Product detail 
+
+**Endpoint: {{host}}/products/v1/P0001/** (P0001 is sku and lookup field)
+
+>**HTTP Verb: GET**
+
+**Header:** 
+> * Accept:application/json
+
+**Response**
+        
+    {
+        "name": "Playera",
+        "sku": "P0001",
+        "price": "100.01",
+        "brand": "Patito",
+        "is_public": true
+    }
+
+#### Delete a product 
+
+**Endpoint: {{host}}/products/v1/P0002/**  (P0002 is sku and lookup field)
+
+>**HTTP Verb: DELETE**
+
+**Header:** 
+> * **Authorization: Token {{access_token}}**
+
+## How to entry to data base
+
+1. Open a terminal and run the containers 
+    * **sudo docker-compose -f docker-compose-local.yml up**
+
+2. Open another terminal and get container id of postgres service
+    * **sudo docker ps**
+
+3. Go to environment variables path (.envs/.local/.postgres) and get **POSTGRES_USER** and **POSTGRES_DB**
+
+4. Run next command
+    * **sudo docker exec -it CONTAINER_ID psql -U POSTGRES_USER -a POSTGRES_DB**
+    
+    * For example
+        * **sudo docker exec -it f22dae79a480 psql -U sBLRWyyPsInwHftmHAWmYJURGWBGFpLs -a catalog**
+
+5.- Some interesting commands
+> * Show tables
+>   * **\dt**
+> * Show table definition
+>   * **\d TABLE_NAME**
+> * To go out
+>   * **\q**
+
 
 
 ## Notes
 
 #### How to make django migrations
 
-You need to run only the django service (from the docker-compose.yml file). Run the make migrations command and end the django service container.
+You need to run only the django service (from the docker-compose.yml file). Run the make migrations command and end the 
+django service container.
 
    * **sudo docker-compose -f docker-compose-local.yml run --rm django python manage.py makemigrations**
 
