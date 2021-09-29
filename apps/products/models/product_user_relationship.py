@@ -4,7 +4,7 @@
 from django.db import models
 
 # Utilities
-from apps.utils.models import CatalogModel
+from utils.models import CatalogModel
 
 
 class ProductUserRelationship(CatalogModel):

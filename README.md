@@ -42,7 +42,21 @@ Systems allows manage products
 4. Congratulation, you can now enter the admin!
 
 
-# How to use API
+# Email
+
+**For local environment**
+>+ Build and run the services with **docker-compose-local.yml** file
+>+ It's define environment variables at .env.local path
+>+ And send emails with Django Backend Email
+
+
+**For production environment**
+>+ Build and run the services with **docker-compose-production.yml** file
+>+ It's define environment variables at .env.production path
+>+ And send emails with AWS SES
+
+
+# Examples
 
 ## USERS
 ____
