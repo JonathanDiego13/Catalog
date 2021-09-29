@@ -48,7 +48,8 @@ Systems allows manage products
 >+ Build and run the services with **docker-compose-local.yml** file
 >+ It's define environment variables at .env.local path
 >+ And send emails with Django Backend Email
-
+>+ If you want run AWS SES at local environtment, add aws variables in ./envs/.local/.aws/* path 
+and change ENV=local to ENV=prod in ./envs/.local/.django
 
 **For production environment**
 >+ Build and run the services with **docker-compose-production.yml** file
@@ -57,9 +58,9 @@ Systems allows manage products
 
 
 # Examples
-
+___
 ## USERS
-____
+
 #### Login 
 
 Use the super user, previously created in the verify section
@@ -193,7 +194,7 @@ Use the super user, previously created in the verify section
 
 
 ## PRODUCTS
-____
+
 #### Create a product 
 
 **Endpoint: {{host}}/products/v1/**
