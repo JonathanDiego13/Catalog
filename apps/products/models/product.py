@@ -4,8 +4,10 @@
 from django.db import models
 
 #Utilities
-from apps.utils.models import CatalogModel
+from utils.models import CatalogModel
 from .product_user_relationship import ProductUserRelationship
+
+from commons.notifiers import Notifier
 
 
 class Product(CatalogModel):
@@ -61,6 +63,10 @@ class Product(CatalogModel):
                 product=self,
                 times_queried_number=1
             )
+
+    def send_notifications(self):
+        notifier = Notifier(self)
+        notifier.notify_everyone()
 
     class Meta(CatalogModel.Meta):
         ordering = ['-name']
