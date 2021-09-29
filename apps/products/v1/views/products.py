@@ -9,7 +9,7 @@ from rest_framework.permissions import (
 from apps.products.models import Product
 
 #Permissions
-from apps.permissions.v1 import IsAdmin
+from commons.permissions import IsAdmin
 
 # Serializers
 from apps.products.v1.serializers import ProductModelSerializer
@@ -50,10 +50,16 @@ class ProductViewSet(mixins.CreateModelMixin,
     def retrieve(self, request, *args, **kwargs):
         response = super(ProductViewSet, self).retrieve(request, *args, *kwargs)
 
-        #Track of the number of times every single product is queried by an anonymous user
         is_admin = getattr(request.user, 'is_admin')
         if not is_admin:
+            # Track of the number of times every single product is queried by an anonymous user
             product = Product.objects.get(sku=response.data['sku'])
             product.update_times_queried_number(request.user)
 
+        return response
+
+    def update(self, request, *args, **kwargs):
+        response = super(ProductViewSet, self).update(request, *args, *kwargs)
+        product = Product.objects.get(sku=response.data['sku'])
+        product.send_notifications()
         return response

@@ -1,8 +1,8 @@
 version: '3'
 
 volumes:
-  local_postgres_data: {}
-  local_postgres_data_backups: {}
+  production_postgres_data: {}
+  production_postgres_data_backups: {}
 
 services:
   django: &django
@@ -14,9 +14,10 @@ services:
       - postgres
     volumes:
       - .:/app
+      - ./.envs/.production/.aws/credentials:/root/.aws/credentials:ro
     env_file:
-      - ./.envs/.local/.django
-      - ./.envs/.local/.postgres
+      - ./.envs/.production/.django
+      - ./.envs/.production/.postgres
     ports:
       - "8000:8000"
     command: /start
@@ -27,10 +28,10 @@ services:
       dockerfile: ./compose/production/postgres/Dockerfile
     image: catalog_production_postgres
     volumes:
-      - local_postgres_data:/var/lib/postgresql/data
-      - local_postgres_data_backups:/backups
+      - production_postgres_data:/var/lib/postgresql/data
+      - production_postgres_data_backups:/backups
     env_file:
-      - ./.envs/.local/.postgres
+      - ./.envs/.production/.postgres
 
   redis:
     image: redis:3.2

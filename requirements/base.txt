@@ -13,6 +13,9 @@ django-filter>=1.0.1  # Filtering support
 # JWT
 pyjwt>=1.7.1
 
+#aws
+boto3==1.4.7
+
 # Environment
 django-environ==0.4.5
 
