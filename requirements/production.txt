@@ -4,6 +4,4 @@
 
 gunicorn==19.9.0
 
-# Static files
-django-storages[boto3]==1.7.1
-
+django-six==1.0.4
