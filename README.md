@@ -4,7 +4,7 @@ Catalog Admin System
 Systems allows manage products
 
 | Name  | Type  | Description |
-| :------------ |:---------------:| -----:|
+| :------------ |:---------------:| :----- |
 | destination   | object          |       |
 | address       | object          |    The destination’s street address details. |
 | number        | string          |    The number component of this address, it may also contain letters. |
@@ -12,6 +12,7 @@ Systems allows manage products
 | apartment     | string          |    The suite or apartment number, or any additional relevant information. |
 | city          | string          |    The name of the municipality. |
 | state         | string          |    The name of the state, province or jurisdiction. |
+
 
 
 # Quick start
