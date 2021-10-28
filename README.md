@@ -3,11 +3,15 @@ Catalog Admin System
 
 Systems allows manage products
 
-| Left-Aligned  | Center Aligned  | Right Aligned |
+| Name  | Type  | Description |
 | :------------ |:---------------:| -----:|
-| col 3 is      | some wordy text | $1600 |
-| col 2 is      | centered        |   $12 |
-| zebra stripes | are neat        |    $1 |
+| destination   | object          |       |
+| address       | object          |    The destination’s street address details. |
+| number        | string          |    The number component of this address, it may also contain letters. |
+| street        | string          |    The name of the street. |
+| apartment     | string          |    The suite or apartment number, or any additional relevant information. |
+| city          | string          |    The name of the municipality. |
+| state         | string          |    The name of the state, province or jurisdiction. |
 
 
 # Quick start
