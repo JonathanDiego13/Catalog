@@ -1,5 +1,5 @@
-* [Quick start](#quickstart)
-*
+* [Quick start](#Quick-start)
+
 Catalog Admin System
 =============
 
@@ -18,7 +18,6 @@ Systems allows manage products
 
 
 # Quick start
-# quickstart
 
 * Clone this repository.
 * Install docker
