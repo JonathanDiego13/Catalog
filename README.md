@@ -1,5 +1,5 @@
 * [Quick start](#Quick-start)
-* [USERS](##USERS)
+* [USERS](#USERS)
 
 Catalog Admin System
 =============
