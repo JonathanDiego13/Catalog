@@ -1,4 +1,4 @@
-* [Quick start](# Quick start)
+* [Quick start](#Quick start)
 *
 Catalog Admin System
 =============
