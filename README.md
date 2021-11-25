@@ -1,4 +1,4 @@
-* [Quick start](#Quick-start-r-)
+* [Quick start](#Quick-start--r--)
 * [USERS](#USERS)
 
 Catalog Admin System
