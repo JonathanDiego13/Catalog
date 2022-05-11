@@ -12,6 +12,7 @@ from commons.notifiers import Notifier
 
 class Product(CatalogModel):
 
+
     name = models.CharField(
         'product name',
         max_length=40,

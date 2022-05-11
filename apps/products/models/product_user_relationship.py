@@ -11,6 +11,7 @@ class ProductUserRelationship(CatalogModel):
     """ProductUserRelationship model.
     """
 
+
     user = models.ForeignKey(
         'users.User',
         on_delete=models.CASCADE,

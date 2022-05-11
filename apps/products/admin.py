@@ -11,6 +11,7 @@ from apps.products.models import Product
 class ProductAdmin(admin.ModelAdmin):
     """Product admin."""
 
+
     list_display = (
         'name',
         'sku',
